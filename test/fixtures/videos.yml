@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  path: MyString
+  project: one
+  knowledge_body: MyText
+
+two:
+  title: MyString
+  path: MyString
+  project: two
+  knowledge_body: MyText

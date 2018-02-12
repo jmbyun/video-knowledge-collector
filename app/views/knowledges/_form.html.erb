@@ -1,0 +1,37 @@
+<%= form_with(model: knowledge, local: true) do |form| %>
+  <% if knowledge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(knowledge.errors.count, "error") %> prohibited this knowledge from being saved:</h2>
+
+      <ul>
+      <% knowledge.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body, id: :knowledge_body %>
+  </div>
+
+  <div class="field">
+    <%= form.label :video_id %>
+    <%= form.text_field :video_id, id: :knowledge_video_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :knowledge_offer_id %>
+    <%= form.text_field :knowledge_offer_id, id: :knowledge_knowledge_offer_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :knowledge_user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

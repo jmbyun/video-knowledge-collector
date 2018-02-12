@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @knowledge.body %>
+</p>
+
+<p>
+  <strong>Video:</strong>
+  <%= @knowledge.video %>
+</p>
+
+<p>
+  <strong>Knowledge offer:</strong>
+  <%= @knowledge.knowledge_offer %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @knowledge.user %>
+</p>
+
+<%= link_to 'Edit', edit_knowledge_path(@knowledge) %> |
+<%= link_to 'Back', knowledges_path %>

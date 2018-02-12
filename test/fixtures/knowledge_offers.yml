@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_str: MyString
+  description: MyString
+  callback_url: MyString
+  approved: false
+  project: one
+  user: one
+
+two:
+  id_str: MyString
+  description: MyString
+  callback_url: MyString
+  approved: false
+  project: two
+  user: two

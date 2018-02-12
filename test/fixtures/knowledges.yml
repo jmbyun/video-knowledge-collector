@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyText
+  video: one
+  knowledge_offer: one
+  user: one
+
+two:
+  body: MyText
+  video: two
+  knowledge_offer: two
+  user: two

@@ -1,0 +1,2 @@
+module KnowledgeOffersHelper
+end

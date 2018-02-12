@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id str:</strong>
+  <%= @knowledge_offer.id_str %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @knowledge_offer.description %>
+</p>
+
+<p>
+  <strong>Callback url:</strong>
+  <%= @knowledge_offer.callback_url %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @knowledge_offer.approved %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @knowledge_offer.project %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @knowledge_offer.user %>
+</p>
+
+<%= link_to 'Edit', edit_knowledge_offer_path(@knowledge_offer) %> |
+<%= link_to 'Back', knowledge_offers_path %>
