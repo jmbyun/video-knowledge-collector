@@ -1,4 +1,4 @@
-<%= form_with(model: knowledge_offer, local: true) do |form| %>
+<%= form_with(model: knowledge_offer, url: project_knowledge_offers_path, local: true) do |form| %>
   <% if knowledge_offer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(knowledge_offer.errors.count, "error") %> prohibited this knowledge_offer from being saved:</h2>
@@ -24,21 +24,6 @@
   <div class="field">
     <%= form.label :callback_url %>
     <%= form.text_field :callback_url, id: :knowledge_offer_callback_url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :approved %>
-    <%= form.check_box :approved, id: :knowledge_offer_approved %>
-  </div>
-
-  <div class="field">
-    <%= form.label :project_id %>
-    <%= form.text_field :project_id, id: :knowledge_offer_project_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :knowledge_offer_user_id %>
   </div>
 
   <div class="actions">

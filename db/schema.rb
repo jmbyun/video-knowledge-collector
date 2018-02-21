@@ -10,7 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201234711) do
+ActiveRecord::Schema.define(version: 20180201235351) do
+
+  create_table "knowledge_offers", force: :cascade do |t|
+    t.string "id_str"
+    t.string "description"
+    t.string "callback_url"
+    t.boolean "approved"
+    t.integer "project_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_knowledge_offers_on_project_id"
+    t.index ["user_id"], name: "index_knowledge_offers_on_user_id"
+  end
+
+  create_table "knowledges", force: :cascade do |t|
+    t.text "body"
+    t.integer "video_id"
+    t.integer "knowledge_offer_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["knowledge_offer_id"], name: "index_knowledges_on_knowledge_offer_id"
+    t.index ["user_id"], name: "index_knowledges_on_user_id"
+    t.index ["video_id"], name: "index_knowledges_on_video_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "id_str"
+    t.string "description"
+    t.text "video_list"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,6 +64,16 @@ ActiveRecord::Schema.define(version: 20180201234711) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string "title"
+    t.string "path"
+    t.integer "project_id"
+    t.text "knowledge_body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_videos_on_project_id"
   end
 
 end

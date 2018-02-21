@@ -30,5 +30,5 @@
   <%= @knowledge_offer.user %>
 </p>
 
-<%= link_to 'Edit', edit_knowledge_offer_path(@knowledge_offer) %> |
-<%= link_to 'Back', knowledge_offers_path %>
+<%= link_to 'Edit', url_for(action: 'edit', controller: 'knowledge_offers', project_id: @project.id, id: @knowledge_offer.id) %> |
+<%= link_to 'Back', project_knowledge_offers_path %>
