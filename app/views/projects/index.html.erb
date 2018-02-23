@@ -18,8 +18,7 @@
       <tr>
         <td><%= project.id_str %></td>
         <td><%= project.description %></td>
-        <td><%= project.video_list %></td>
-        <td><%= project.user %></td>
+        <td><%= project.user.organization %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>

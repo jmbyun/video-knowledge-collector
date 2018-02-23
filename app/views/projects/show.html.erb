@@ -11,13 +11,8 @@
 </p>
 
 <p>
-  <strong>Video list:</strong>
-  <%= @project.video_list %>
-</p>
-
-<p>
   <strong>User:</strong>
-  <%= @project.user %>
+  <%= @project.user.organization %>
 </p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

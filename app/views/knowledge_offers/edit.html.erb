@@ -2,5 +2,5 @@
 
 <%= render 'form', knowledge_offer: @knowledge_offer %>
 
-<%= link_to 'Show', @knowledge_offer %> |
+<%= link_to 'Show', url_for(action: 'show', controller: 'knowledge_offers', project_id: @project.id, id: @knowledge_offer.id) %> |
 <%= link_to 'Back', project_knowledge_offers_path %>

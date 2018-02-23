@@ -20,8 +20,8 @@
         <td><%= video.path %></td>
         <td><%= video.project %></td>
         <td><%= video.knowledge_body %></td>
-        <td><%= link_to 'Show', video %></td>
-        <td><%= link_to 'Edit', edit_video_path(video) %></td>
+        <td><%= link_to 'Show', url_for(action: 'show', controller: 'videos', project_id: @project.id, id: video.id) %></td>
+        <td><%= link_to 'Edit', url_for(action: 'edit', controller: 'videos', project_id: @project.id, id: video.id) %></td>
         <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Video', new_video_path %>
+<%= link_to 'New Video', new_project_video_path %>

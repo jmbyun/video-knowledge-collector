@@ -1,34 +1,36 @@
 class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+  before_action :authenticate_project_owner, only: [:edit, :update, :destroy]
 
-  # GET /videos
-  # GET /videos.json
+  # GET /projects/1/videos
+  # GET /projects/1/videos.json
   def index
     @videos = Video.all
   end
 
-  # GET /videos/1
-  # GET /videos/1.json
+  # GET /projects/1/videos/1
+  # GET /projects/1/videos/1.json
   def show
   end
 
-  # GET /videos/new
+  # GET /projects/1/videos/new
   def new
     @video = Video.new
   end
 
-  # GET /videos/1/edit
+  # GET /projects/1/videos/1/edit
   def edit
   end
 
-  # POST /videos
-  # POST /videos.json
+  # POST /projects/1/videos
+  # POST /projects/1/videos.json
   def create
-    @video = Video.new(video_params)
+    @video = Video.new(video_params.merge({ project_id: @project.id }))
 
     respond_to do |format|
       if @video.save
-        format.html { redirect_to @video, notice: 'Video was successfully created.' }
+        format.html { redirect_to action: 'show', controller: 'videos', project_id: @project.id, id: @video.id, notice: 'Video was successfully created.' }
         format.json { render :show, status: :created, location: @video }
       else
         format.html { render :new }
@@ -37,12 +39,12 @@ class VideosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /videos/1
-  # PATCH/PUT /videos/1.json
+  # PATCH/PUT /projects/1/videos/1
+  # PATCH/PUT /projects/1/videos/1.json
   def update
     respond_to do |format|
-      if @video.update(video_params)
-        format.html { redirect_to @video, notice: 'Video was successfully updated.' }
+      if @video.update(video_params.merge({ project_id: @project.id }))
+        format.html { redirect_to action: 'show', controller: 'videos', project_id: @project.id, id: @video.id, notice: 'Video was successfully updated.' }
         format.json { render :show, status: :ok, location: @video }
       else
         format.html { render :edit }
@@ -51,8 +53,8 @@ class VideosController < ApplicationController
     end
   end
 
-  # DELETE /videos/1
-  # DELETE /videos/1.json
+  # DELETE /projects/1/videos/1
+  # DELETE /projects/1/videos/1.json
   def destroy
     @video.destroy
     respond_to do |format|
@@ -69,6 +71,13 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:title, :path, :project_id, :knowledge_body)
+      params.require(:video).permit(:title, :path)
+    end
+
+    # Authenticate user before allowing modification.
+    def authenticate_project_owner
+      unless current_user && (current_user.admin || current_user.id == @project.user.id)
+        redirect_to action: 'show', controller: 'videos', project_id: @project.id, id: @video.id, notice: 'Permission denied.'
+      end
     end
 end
