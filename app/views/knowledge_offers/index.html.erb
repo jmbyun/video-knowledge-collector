@@ -28,7 +28,7 @@
         <td><%= knowledge_offer.user %></td>
         <td><%= link_to 'Show', url_for(action: 'show', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id) %></td>
         <td><%= link_to 'Edit', url_for(action: 'edit', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id) %></td>
-        <td><%= link_to 'Destroy', knowledge_offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', url_for(action: 'destroy', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -6,7 +6,7 @@ class VideosController < ApplicationController
   # GET /projects/1/videos
   # GET /projects/1/videos.json
   def index
-    @videos = Video.all
+    @videos = Video.where(project_id: @project.id)
   end
 
   # GET /projects/1/videos/1
@@ -58,7 +58,7 @@ class VideosController < ApplicationController
   def destroy
     @video.destroy
     respond_to do |format|
-      format.html { redirect_to videos_url, notice: 'Video was successfully destroyed.' }
+      format.html { redirect_to project_videos_url, notice: 'Video was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,6 +67,11 @@ class VideosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_video
       @video = Video.find(params[:id])
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_project
+      @project = Project.find(params[:project_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

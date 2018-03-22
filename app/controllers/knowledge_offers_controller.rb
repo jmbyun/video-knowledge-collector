@@ -7,7 +7,7 @@ class KnowledgeOffersController < ApplicationController
   # GET /projects/1/knowledge_offers
   # GET /projects/1/knowledge_offers.json
   def index
-    @knowledge_offers = KnowledgeOffer.all
+    @knowledge_offers = KnowledgeOffer.where(project_id: @project.id)
   end
 
   # GET /projects/1/knowledge_offers/1
@@ -76,7 +76,7 @@ class KnowledgeOffersController < ApplicationController
   def destroy
     @knowledge_offer.destroy
     respond_to do |format|
-      format.html { redirect_to knowledge_offers_url, notice: 'Knowledge offer was successfully destroyed.' }
+      format.html { redirect_to project_knowledge_offers_url, notice: 'Knowledge offer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
