@@ -99,7 +99,7 @@ class KnowledgeOffersController < ApplicationController
 
     # Authenticate user before allowing modification.
     def authenticate_user_permission
-      unless current_user && (current_user.admin || current_user.id == @@knowledge_offer.user.id)
+      unless current_user && (current_user.admin || current_user.id == @knowledge_offer.user.id)
         redirect_to action: 'index', notice: 'Permission denied.'
       end
     end

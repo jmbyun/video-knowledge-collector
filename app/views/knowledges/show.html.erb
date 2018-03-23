@@ -20,5 +20,5 @@
   <%= @knowledge.user %>
 </p>
 
-<%= link_to 'Edit', edit_knowledge_path(@knowledge) %> |
-<%= link_to 'Back', knowledges_path %>
+<%= link_to 'Edit', url_for(action: 'edit', controller: 'knowledges', project_id: @project.id, video_id: @video.id, id: @knowledge.id) %> |
+<%= link_to 'Back', project_video_knowledges_path %>

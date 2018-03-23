@@ -20,9 +20,9 @@
         <td><%= knowledge.video %></td>
         <td><%= knowledge.knowledge_offer %></td>
         <td><%= knowledge.user %></td>
-        <td><%= link_to 'Show', knowledge %></td>
-        <td><%= link_to 'Edit', edit_knowledge_path(knowledge) %></td>
-        <td><%= link_to 'Destroy', knowledge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', url_for(action: 'show', controller: 'knowledges', project_id: @project.id, video_id: @video.id, id: knowledge.id) %></td>
+        <td><%= link_to 'Edit', url_for(action: 'edit', controller: 'knowledges', project_id: @project.id, video_id: @video.id, id: knowledge.id) %></td>
+        <td><%= link_to 'Destroy', url_for(action: 'destroy', controller: 'knowledges', project_id: @project.id, video_id: @video.id, id: knowledge.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Knowledge', new_knowledge_path %>
+<%= link_to 'New Knowledge', new_project_video_knowledge_path %>
