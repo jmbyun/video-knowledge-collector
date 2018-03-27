@@ -71,7 +71,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:id_str, :description, :video_list, :user_id)
+      params.require(:project).permit(:id_str, :description, :callback_url, :title, :video_list, :user_id)
     end
 
     # Authenticate user before allowing modification.

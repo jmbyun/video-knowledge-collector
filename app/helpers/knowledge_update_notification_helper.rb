@@ -1,0 +1,2 @@
+module KnowledgeUpdateNotificationHelper
+end

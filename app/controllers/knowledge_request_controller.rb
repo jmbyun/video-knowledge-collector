@@ -1,0 +1,2 @@
+class KnowledgeRequestController < ApplicationController
+end

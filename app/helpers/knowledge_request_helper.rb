@@ -1,0 +1,2 @@
+module KnowledgeRequestHelper
+end

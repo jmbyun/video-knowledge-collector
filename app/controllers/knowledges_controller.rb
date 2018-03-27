@@ -5,11 +5,12 @@ class KnowledgesController < ApplicationController
   before_action :set_knowledge_offer, only: [:new, :create, :edit, :update, :destroy]
   before_action :authenticate_user_permission, only: [:new, :create, :edit, :update, :destroy]
   before_action :validate_knowledge_offer_approval, only: [:new, :create, :edit, :update, :destroy]
+  protect_from_forgery except: [:create]
 
   # GET /projects/1/videos/1/knowledges
   # GET /projects/1/videos/1/knowledges.json
   def index
-    @knowledges = Knowledge.all
+    @knowledges = Knowledge.where(project_id: @project.id, video_id: @video.id)
   end
 
   # GET /projects/1/videos/1/knowledges/1
@@ -93,6 +94,8 @@ class KnowledgesController < ApplicationController
     def set_knowledge_offer
       if params[:knowledge_offer_id]
         @knowledge_offer = KnowledgeOffer.find(params[:knowledge_offer_id])
+      elsif params[:knowledge_offer_id_str]
+        @knowledge_offer = KnowledgeOffer.where(id_str: params[:knowledge_offer_id_str]).first
       else
         knowledge_offers = KnowledgeOffer.where(user_id: current_user.id, project_id: params[:project_id])
         if knowledge_offers.empty?

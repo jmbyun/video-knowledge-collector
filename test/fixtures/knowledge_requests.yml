@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  succeed: false
+  knowledge_offer: one
+
+two:
+  url: MyString
+  succeed: false
+  knowledge_offer: two

@@ -1,0 +1,2 @@
+class KnowledgeUpdateNotificationController < ApplicationController
+end

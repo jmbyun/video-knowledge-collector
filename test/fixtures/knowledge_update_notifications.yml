@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  succeed: false
+  video: one
+
+two:
+  url: MyString
+  succeed: false
+  video: two

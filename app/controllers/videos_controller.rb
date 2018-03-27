@@ -2,6 +2,7 @@ class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
   before_action :set_project, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   before_action :authenticate_project_owner, only: [:edit, :update, :destroy]
+  protect_from_forgery except: [:create]
 
   # GET /projects/1/videos
   # GET /projects/1/videos.json
@@ -76,7 +77,7 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:title, :path)
+      params.require(:video).permit(:title, :url)
     end
 
     # Authenticate user before allowing modification.

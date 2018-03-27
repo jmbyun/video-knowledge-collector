@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201235351) do
+ActiveRecord::Schema.define(version: 20180211082815) do
 
   create_table "knowledge_offers", force: :cascade do |t|
     t.string "id_str"
@@ -23,6 +23,27 @@ ActiveRecord::Schema.define(version: 20180201235351) do
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_knowledge_offers_on_project_id"
     t.index ["user_id"], name: "index_knowledge_offers_on_user_id"
+  end
+
+  create_table "knowledge_requests", force: :cascade do |t|
+    t.string "url"
+    t.boolean "succeed"
+    t.integer "knowledge_offer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "video_id"
+    t.text "response_body"
+    t.index ["knowledge_offer_id"], name: "index_knowledge_requests_on_knowledge_offer_id"
+    t.index ["video_id"], name: "index_knowledge_requests_on_video_id"
+  end
+
+  create_table "knowledge_update_notifications", force: :cascade do |t|
+    t.string "url"
+    t.boolean "succeed"
+    t.integer "video_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["video_id"], name: "index_knowledge_update_notifications_on_video_id"
   end
 
   create_table "knowledges", force: :cascade do |t|
@@ -44,6 +65,8 @@ ActiveRecord::Schema.define(version: 20180201235351) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "callback_url"
+    t.string "title"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -62,13 +85,14 @@ ActiveRecord::Schema.define(version: 20180201235351) do
     t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "videos", force: :cascade do |t|
     t.string "title"
-    t.string "path"
+    t.string "url"
     t.integer "project_id"
     t.text "knowledge_body"
     t.datetime "created_at", null: false

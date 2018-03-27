@@ -1,6 +1,6 @@
 <h1>Editing Video</h1>
 
-<%= render 'form', video: @video %>
+<%= render 'form', video: @video, url: url_for(action: 'edit', controller: 'videos', project_id: @project.id, id: @video.id) %>
 
 <%= link_to 'Show', url_for(action: 'show', controller: 'videos', project_id: @project.id, id: @video.id) %> |
 <%= link_to 'Back', project_videos_path %>
