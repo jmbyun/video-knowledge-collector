@@ -1,0 +1,17 @@
+.m-text {
+  &--info {
+    color: color('info');
+  }
+
+  &--success {
+    color: color('success');
+  }
+
+  &--warning {
+    color: color('warning');
+  }
+
+  &--danger {
+    color: color('danger');
+  }
+}

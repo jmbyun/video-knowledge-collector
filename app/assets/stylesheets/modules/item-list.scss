@@ -1,0 +1,26 @@
+.m-item-list {
+  width: 100%;
+  max-width: 100%;
+  font-size: rem(12px);
+
+  tr {
+    border-bottom: 1px solid color('light-white');
+  }
+
+  td {
+    padding: rem(10px) rem(16px);
+    vertical-align: middle;
+  }
+
+  thead {
+    tr {
+      background-color: color('light-grey');
+    }
+  }
+
+  tbody {
+    tr {
+      background-color: transparent;
+    }
+  }
+}

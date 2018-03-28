@@ -13,6 +13,7 @@ class VideosController < ApplicationController
   # GET /projects/1/videos/1
   # GET /projects/1/videos/1.json
   def show
+    @knowledge_offers = KnowledgeOffer.where(project_id: @project.id)
   end
 
   # GET /projects/1/videos/new

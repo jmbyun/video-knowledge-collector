@@ -1,24 +1,161 @@
-<p id="notice"><%= notice %></p>
+<div class="m-container">
+  <div class="m-container__title">
+    <%= link_to "Projects", projects_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to @project.id_str, @project %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to "Videos", project_videos_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= @video.title %>
+  </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @video.title %>
-</p>
+  <div class="m-def-list">
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        Title
+      </div>
+      <div class="m-def-list__info">
+        <%= @video.title %>
+      </div>
+    </div>
 
-<p>
-  <strong>Url:</strong>
-  <%= @video.url %>
-</p>
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        Download URL
+      </div>
+      <div class="m-def-list__info">
+        <%= @video.url %>
+      </div>
+    </div>
 
-<p>
-  <strong>Project:</strong>
-  <%= @video.project %>
-</p>
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        Collected All Knowledges
+      </div>
+      <div class="m-def-list__info">
+        <% if @video.is_all_knowledges %>
+          <span class="m-text--success">Yes</span>
+        <% else %>
+          <span class="m-text--danger">No</span>
+        <% end %>
+      </div>
+    </div>
 
-<p>
-  <strong>Knowledge body:</strong>
-  <%= @video.knowledge_body %>
-</p>
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        Knowledge Collecting Complete Notifications
+      </div>
+      <div class="m-def-list__info">
+        <table class="m-item-list">
+          <thead>
+            <tr>
+              <th>Sent At</th>
+              <th>Target URL</th>
+              <th>Succeed</th>
+            </tr>
+          </thead>
 
-<%= link_to 'Edit', url_for(action: 'edit', controller: 'videos', project_id: @project.id, id: @video.id) %> |
-<%= link_to 'Back', project_videos_path %>
+          <tbody>
+            <% @video.knowledge_update_notifications.each do |notification| %>
+              <tr>
+                <td><%= notification.create_at %></td>
+                <td><%= notification.url %></td>
+                <td>
+                  <% if notification.succeed %>
+                    <span class="m-text--success">Yes</span>
+                  <% else %>
+                    <span class="m-text--danger">No</span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        Knowledges
+      </div>
+      <div class="m-def-list__info">
+        <table class="m-item-list">
+          <thead>
+            <tr>
+              <th>Offer ID</th>
+              <th>Description</th>
+              <th>User Name</th>
+              <th>User Organization</th>
+              <th>Approved</th>
+              <th>Request Sent</th>
+              <th>Request Sent URL</th>
+              <th>Knowledge Retrieved</th>
+              <th>Knowledge Text Length</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @knowledge_offers.each do |knowledge_offer| %>
+              <% knowledge_request = knowledge_offer.get_knowledge_request(@video) %>
+              <% knowledge = knowledge_offer.get_knowledge(@video) %>
+              <tr>
+                <td><%= link_to knowledge_offer.id_str, url_for(action: 'show', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id) %></td>
+                <td><%= knowledge_offer.description %></td>
+                <td><%= knowledge_offer.user.name %></td>
+                <td><%= knowledge_offer.user.organization %></td>
+                <td>
+                  <% if knowledge_offer.approved %>
+                    <span class="m-text--success">Yes</span>
+                  <% else %>
+                    <span class="m-text--danger">No</span>
+                  <% end %>
+                </td>
+                <td>
+                  <% unless knowledge_request.nil? %>
+                    <% if knowledge_request.succeed %>
+                      <span class="m-text--success">Yes</span>
+                    <% else %>
+                      <span class="m-text--danger">Yes but failed</span>
+                    <% end %>
+                  <% else %>
+                    <span class="m-text--danger">No</span>
+                  <% end %>
+                </td>
+                <td>
+                  <% unless knowledge_request.nil? %>
+                    <%= knowledge_request.url %>
+                  <% else %>
+                    -
+                  <% end %>
+                </td>
+                <td>
+                  <% unless knowledge.nil? %>
+                    <span class="m-text--success">Yes</span>
+                  <% else %>
+                    <span class="m-text--danger">No</span>
+                  <% end %>
+                </td>
+                <td>
+                  <% unless knowledge.nil? %>
+                    <%= (knowledge.body || "").length %>
+                  <% else %>
+                    -
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-action-bar">
+    <div class="m-action-bar__item">
+      <%= link_to "Edit", url_for(action: "edit", controller: "videos", project_id: @project.id, id: @video.id), class: "m-button" %>
+    </div>
+    <div class="m-action-bar__item">
+      <%= link_to "Back", project_videos_path, class: "m-button" %>
+    </div>
+  </div>
+</div>

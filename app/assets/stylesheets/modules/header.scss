@@ -1,0 +1,122 @@
+
+.m-header {
+  position: fixed;
+  padding: 0 rem(16px);
+  background-color: color('light-white');
+  border-bottom: 1px solid color('light-grey');
+  top: 0;
+  width: 100%;
+  height: $header-height;
+  z-index: $header-z-index;
+
+  &__logo-block {
+    float: left;
+    padding-right: rem(32px);
+    height: $header-height;
+    width: auto;
+    color: color('main');
+  }
+
+  &__logo {
+    $logo-height: 28px;
+    float: left;
+    margin: (($header-height - $logo-height) / 2) 0;
+    height: $logo-height;
+    width: auto;
+  }
+
+  &__app-title {
+    padding-right: rem(4px);
+  }
+
+  &__title {
+    float: left;
+    padding-left: rem(12px);
+    font-size: rem(16px);
+    font-weight: $bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: $header-height;
+  }
+
+  &__menu {
+    float: left;
+    overflow: hidden;
+    height: $header-height;
+  }
+
+  &__right-menu {
+    float: right;
+    overflow: hidden;
+    height: $header-height;
+  }
+
+  &__menu-item {
+    float: left;
+    margin-right: rem(32px);
+    height: $header-height;
+    font-size: rem(14px);
+    line-height: $header-height;
+    color: color('dark-grey');
+    cursor: pointer;
+
+    &:hover {
+      color: color('black');
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &--is-active {
+      color: color('main');
+      font-weight: $bold;
+    }
+  }
+}
+
+@media (max-width: $media-lg-width) {
+  .m-header {
+    &__title {
+      max-width: 350px;
+    }
+
+    &__menu-item {
+      margin-right: rem(24px);
+    }
+  }
+}
+
+@media (max-width: $media-sm-width) {
+  .m-header {
+    padding: 0 rem(16px) $header-sm-height / 2 rem(16px);
+    height: $header-sm-height;
+
+    &__app-title {
+      display: none;
+    }
+
+    &__title {
+      max-width: 200px;
+    }
+
+    &__menu {
+      display: flex;
+      flex-wrap: nowrap;
+      position: absolute;
+      padding: 0 rem(16px);
+      top: $header-sm-height / 2;
+      left: 0;
+      width: 100%;
+      height: $header-sm-height / 2;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+
+    &__menu-item {
+      float: none;
+      flex: 0 0 auto;
+    }
+  }
+}

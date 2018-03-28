@@ -1,5 +1,9 @@
-<h1>New Project</h1>
+<div class="m-container">
+  <div class="m-container__title">
+    <%= link_to "Projects", projects_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    New Project
+  </div>
 
-<%= render 'form', project: @project %>
-
-<%= link_to 'Back', projects_path %>
+  <%= render 'form', project: @project %>
+</div>

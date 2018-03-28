@@ -1,0 +1,36 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-stack;
+}
+
+body:lang(en) {
+  font-family: $en-font-stack;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover,
+  &:active,
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+input, textarea, keygen, select, button {
+  font-family: inherit;
+}
+
+code {
+  font-family: $monospace-font-stack;
+}

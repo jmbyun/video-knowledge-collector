@@ -1,34 +1,52 @@
-<p id="notice"><%= notice %></p>
+<div class="m-container">
+  <div class="m-container__title">
+    <%= link_to "Projects", projects_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to @project.id_str, @project %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    Videos
+  </div>
 
-<h1>Videos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Path</th>
-      <th>Project</th>
-      <th>Knowledge body</th>
-      <!-- <th colspan="3"></th> -->
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @videos.each do |video| %>
+  <table class="m-item-list">
+    <thead>
       <tr>
-        <td><%= video.title %></td>
-        <td><%= video.path %></td>
-        <td><%= video.project %></td>
-        <td><%= video.knowledge_body %></td>
-        <td><%= link_to 'Show', url_for(action: 'show', controller: 'videos', project_id: @project.id, id: video.id) %></td>
-        <td><%= link_to 'Edit', url_for(action: 'edit', controller: 'videos', project_id: @project.id, id: video.id) %></td>
-        <td><%= link_to 'Destroy', url_for(action: 'destroy', controller: 'videos', project_id: @project.id, id: video.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Title</th>
+        <th>Download</th>
+        <th>Collected All Knowledges</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @videos.each do |video| %>
+        <tr>
+          <td><%= link_to video.title, url_for(action: 'show', controller: 'videos', project_id: @project.id, id: video.id) %></td>
+          <td><%= link_to "Download", video.url %></td>
+          <td>
+            <% if video.is_all_knowledges %>
+              <span class="m-text--success">Yes</span>
+            <% else %>
+              <span class="m-text--danger">No</span>
+            <% end %>
+          </td>
+          <td>
+            <% if current_user.admin || current_user.id == @project.user.id %>
+              <%= link_to 'Edit', url_for(action: 'edit', controller: 'videos', project_id: @project.id, id: video.id) %>
+            <% end %>
+          </td>
+          <td>
+            <% if current_user.admin || current_user.id == @project.user.id %>
+              <%= link_to 'Destroy', url_for(action: 'destroy', controller: 'videos', project_id: @project.id, id: video.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Video', new_project_video_path %>
+  <div class="m-action-bar">
+    <div class="m-action-bar__item">
+      <%= link_to 'New Video', new_project_video_path, class: "m-button" %>
+    </div>
+  </div>
+</div>

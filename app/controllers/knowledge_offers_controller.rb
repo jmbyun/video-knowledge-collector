@@ -1,8 +1,8 @@
 class KnowledgeOffersController < ApplicationController
-  before_action :set_knowledge_offer, only: [:show, :edit, :update, :destroy, :approve]
-  before_action :set_project, only: [:index, :show, :new, :edit, :create, :update, :destroy, :approve]
+  before_action :set_knowledge_offer, only: [:show, :edit, :update, :destroy, :approve, :disapprove]
+  before_action :set_project, only: [:index, :show, :new, :edit, :create, :update, :destroy, :approve, :disapprove]
   before_action :authenticate_user_permission, only: [:edit, :update, :destroy]
-  before_action :authenticate_project_owner, only: [:approve]
+  before_action :authenticate_project_owner, only: [:approve, :disapprove]
 
   # GET /projects/1/knowledge_offers
   # GET /projects/1/knowledge_offers.json
@@ -70,6 +70,19 @@ class KnowledgeOffersController < ApplicationController
     end
   end
 
+  # POST /projects/1/knowledge_offers/1/disapprove
+  # POST /projects/1/knowledge_offers/1/disapprove.json
+  def disapprove
+    respond_to do |format|
+      if @knowledge_offer.update({ approved: false })
+        format.html { redirect_to action: 'show', controller: 'knowledge_offers', project_id: @project.id, id: @knowledge_offer.id, notice: 'Knowledge offer was successfully disapproved.' }
+        format.json { render :show, status: :ok, location: @knowledge_offer }
+      else
+        format.html { render :edit }
+        format.json { render json: @knowledge_offer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /projects/1/knowledge_offers/1
   # DELETE /projects/1/knowledge_offers/1.json

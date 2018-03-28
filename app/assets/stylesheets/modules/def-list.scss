@@ -1,0 +1,20 @@
+.m-def-list {
+  padding: rem(16px) 0;
+
+  &__item {
+    padding: rem(4px) 0;
+  }
+
+  &__title {
+    padding: rem(4px) 0;
+    font-size: rem(12px);
+    font-weight: $bold;
+    color: color('grey');
+  }
+
+  &__info {
+    padding: rem(4px) 0;
+    font-size: rem(12px);
+    color: color('black');
+  }
+}

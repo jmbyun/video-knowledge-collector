@@ -1,0 +1,10 @@
+
+@import "imports.scss";
+
+.header-container {
+  padding-top: $header-height;
+}
+
+@media (max-width: $media-sm-width) {
+  padding-top: $header-sm-height;
+}

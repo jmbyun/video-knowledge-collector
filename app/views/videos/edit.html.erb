@@ -1,6 +1,12 @@
-<h1>Editing Video</h1>
-
-<%= render 'form', video: @video, url: url_for(action: 'edit', controller: 'videos', project_id: @project.id, id: @video.id) %>
-
-<%= link_to 'Show', url_for(action: 'show', controller: 'videos', project_id: @project.id, id: @video.id) %> |
-<%= link_to 'Back', project_videos_path %>
+<div class="m-container">
+  <div class="m-container__title">
+    <%= link_to "Projects", projects_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to @project.id_str, @project %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to "Videos", project_videos_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    Edit
+  </div>
+  <%= render 'form', video: @video, url: url_for(action: 'update', controller: 'videos', project_id: @project.id, id: @video.id) %>
+</div>

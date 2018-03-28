@@ -11,6 +11,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @knowledge_offers = KnowledgeOffer.where(project_id: @project.id).limit(10)
+    @videos = Video.where(project_id: @project.id).limit(10)
   end
 
   # GET /projects/new

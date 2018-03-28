@@ -2,6 +2,7 @@ class Video < ApplicationRecord
   belongs_to :project
   has_many :knowledge_requests
   has_many :knowledges
+  has_many :knowledge_update_notifications
   after_create :notify_video_add
   after_create :add_to_project_video_list
   after_destroy :remove_from_project_video_list
@@ -48,7 +49,7 @@ class Video < ApplicationRecord
           knowledge_offer_id: knowledge_offer.id,
           video_id: self.id
         )
-        knowledge_request.save!
+        knowledge_request.save
       end
     end
 

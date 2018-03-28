@@ -1,32 +1,44 @@
-<p id="notice"><%= notice %></p>
+<div class="m-container">
+  <div class="m-container__title">
+    Projects
+  </div>
 
-<h1>Projects</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Id str</th>
-      <th>Description</th>
-      <th>Video list</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
+  <table class="m-item-list">
+    <thead>
       <tr>
-        <td><%= project.id_str %></td>
-        <td><%= project.description %></td>
-        <td><%= project.user.organization %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>ID</th>
+        <th>Description</th>
+        <th>User Name</th>
+        <th>User Organization</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.id_str, project %></td>
+          <td><%= project.description %></td>
+          <td><%= project.user.name %></td>
+          <td><%= project.user.organization %></td>
+          <td>
+            <% if current_user.admin || current_user.id == project.user.id %>
+              <%= link_to 'Edit', edit_project_path(project) %>
+            <% end %>
+          </td>
+          <td>
+            <% if current_user.admin || current_user.id == project.user.id %>
+              <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Project', new_project_path %>
+  <div class="m-action-bar">
+    <div class="m-action-bar__item">
+      <%= link_to 'New Project', new_project_path, class: "m-button" %>
+    </div>
+  </div>
+</div>

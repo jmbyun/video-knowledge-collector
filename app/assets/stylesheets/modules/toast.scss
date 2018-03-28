@@ -1,0 +1,11 @@
+.m-toast {
+  background-color: color('info');
+  padding: rem(12px) rem(20px);
+  font-size: rem(14px);
+  color: color('white');
+  line-height: 1.5em;
+
+  &--danger {
+    background-color: color('danger');
+  }
+}

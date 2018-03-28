@@ -1,37 +1,65 @@
-<p id="notice"><%= notice %></p>
+<div class="m-container">
+  <div class="m-container__title">
+    <%= link_to "Projects", projects_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to @project.id_str, @project %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    Knowledge Offers
+  </div>
 
-<h1>Knowledge Offers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Id str</th>
-      <th>Description</th>
-      <th>Callback url</th>
-      <th>Approved</th>
-      <th>Project</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @knowledge_offers.each do |knowledge_offer| %>
+  <table class="m-item-list">
+    <thead>
       <tr>
-        <td><%= knowledge_offer.id_str %></td>
-        <td><%= knowledge_offer.description %></td>
-        <td><%= knowledge_offer.callback_url %></td>
-        <td><%= knowledge_offer.approved %></td>
-        <td><%= knowledge_offer.project %></td>
-        <td><%= knowledge_offer.user %></td>
-        <td><%= link_to 'Show', url_for(action: 'show', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id) %></td>
-        <td><%= link_to 'Edit', url_for(action: 'edit', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id) %></td>
-        <td><%= link_to 'Destroy', url_for(action: 'destroy', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>ID</th>
+        <th>Description</th>
+        <th>User Name</th>
+        <th>User Organization</th>
+        <th>Approved</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @knowledge_offers.each do |knowledge_offer| %>
+        <tr>
+          <td><%= link_to knowledge_offer.id_str, url_for(action: 'show', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id) %></td>
+          <td><%= knowledge_offer.description %></td>
+          <td><%= knowledge_offer.user.name %></td>
+          <td><%= knowledge_offer.user.organization %></td>
+          <td>
+            <% if knowledge_offer.approved %>
+              <span class="m-text--success">Yes</span>
+            <% else %>
+              <span class="m-text--danger">No</span>
+            <% end %>
+          </td>
+          <td>
+            <% if current_user.admin || current_user.id == @project.user.id %>
+              <% if knowledge_offer.approved %>
+                <%= link_to 'Disapprove', "/projects/#{@project.id}/knowledge_offers/#{knowledge_offer.id}/disapprove", method: :post, data: { confirm: "Are you sure to disconfirm this offer?" } %>
+              <% else %>
+                <%= link_to 'Approve', "/projects/#{@project.id}/knowledge_offers/#{knowledge_offer.id}/approve", method: :post, data: { confirm: "Are you sure to confirm this offer?" } %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% if current_user.admin || current_user.id == knowledge_offer.user.id %>
+              <%= link_to 'Edit', url_for(action: 'edit', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id) %>
+            <% end %>
+          </td>
+          <td>
+            <% if current_user.admin || current_user.id == knowledge_offer.user.id %>
+              <%= link_to 'Destroy', url_for(action: 'destroy', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Knowledge Offer', new_project_knowledge_offer_path %>
+  <div class="m-action-bar">
+    <div class="m-action-bar__item">
+      <%= link_to 'New Knowledge Offer', new_project_knowledge_offer_path, class: "m-button" %>
+    </div>
+  </div>
+</div>

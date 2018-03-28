@@ -1,0 +1,68 @@
+.m-form {
+  &__title {
+    padding: rem(12px) 0;
+    color: color('black');
+    font-size: rem(14px);
+    font-weight: bold;
+  }
+
+  &__errors {
+    padding: rem(16px) 0;
+    color: color('warning');
+    font-size: rem(12px);
+    line-height: 1.5em;
+
+    h2 {
+      color: color('black');
+      font-weight: $bold;
+    }
+
+    ul {
+      display: block;
+      list-style-type: disc;
+      margin-top: 1em;
+      margin-bottom: 1 em;
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: rem(36px);
+    }
+
+    li {
+      display: list-item;
+    }
+  }
+
+  &__group {
+    padding: rem(4px) 0;
+  }
+
+  &__label {
+    display: block;
+    padding: rem(4px) 0;
+    color: color('dark-grey');
+    font-size: 12px;
+  }
+
+  &__input {
+    display: block;
+    margin: rem(4px) 0;
+    border: 1px solid color('grey');
+    border-radius: 0;
+    outline: none;
+    padding: rem(8px) rem(12px);
+    font-size: rem(14px);
+    color: color('dark-grey');
+    width: 100%;
+
+    @at-root {
+      textarea#{&} {
+        resize: vertical;
+        height: rem(160px);
+      }
+    }
+
+    &:focus {
+      border: 1px solid color('link');
+    }
+  }
+}

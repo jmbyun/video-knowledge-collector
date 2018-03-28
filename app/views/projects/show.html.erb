@@ -1,19 +1,152 @@
-<p id="notice"><%= notice %></p>
+<div class="m-container">
+  <div class="m-container__title">
+    <%= link_to "Projects", projects_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= @project.id_str %>
+  </div>
 
-<p>
-  <strong>Id str:</strong>
-  <%= @project.id_str %>
-</p>
+  <div class="m-def-list">
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        ID
+      </div>
+      <div class="m-def-list__info">
+        <%= @project.id_str %>
+      </div>
+    </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        Description
+      </div>
+      <div class="m-def-list__info">
+        <%= @project.description || "-" %>
+      </div>
+    </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @project.user.organization %>
-</p>
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        User Name
+      </div>
+      <div class="m-def-list__info">
+        <%= @project.user.name || "-" %>
+      </div>
+    </div>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        User Organization
+      </div>
+      <div class="m-def-list__info">
+        <%= @project.user.organization || "-" %>
+      </div>
+    </div>
+
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        Knowledge Offers
+      </div>
+      <div class="m-def-list__info">
+        <table class="m-item-list">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Description</th>
+              <th>User Name</th>
+              <th>User Organization</th>
+              <th>Approved</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @knowledge_offers.each do |knowledge_offer| %>
+              <tr>
+                <td><%= link_to knowledge_offer.id_str, url_for(action: 'show', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id) %></td>
+                <td><%= knowledge_offer.description %></td>
+                <td><%= knowledge_offer.user.name %></td>
+                <td><%= knowledge_offer.user.organization %></td>
+                <td>
+                  <% if knowledge_offer.approved %>
+                    <span class="m-text--success">Yes</span>
+                  <% else %>
+                    <span class="m-text--danger">No</span>
+                  <% end %>
+                </td>
+                <td>
+                  <% if current_user.admin || current_user.id == knowledge_offer.user.id %>
+                    <%= link_to 'Edit', url_for(action: 'edit', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id) %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if current_user.admin || current_user.id == knowledge_offer.user.id %>
+                    <%= link_to 'Destroy', url_for(action: 'destroy', controller: 'knowledge_offers', project_id: @project.id, id: knowledge_offer.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="m-def-list__info">
+        <%= link_to "See more / Manage Knowledge Offers", url_for(action: 'index', controller: 'knowledge_offers', project_id: @project.id) %>
+      </div>
+    </div>
+
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        Videos
+      </div>
+      <div class="m-def-list__info">
+        <table class="m-item-list">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Download</th>
+              <th>Collected All Knowledges</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @videos.each do |video| %>
+              <tr>
+                <td><%= link_to video.title, url_for(action: 'show', controller: 'videos', project_id: @project.id, id: video.id) %></td>
+                <td><%= link_to "Download", video.url %></td>
+                <td>
+                  <% if video.is_all_knowledges %>
+                    <span class="m-text--success">Yes</span>
+                  <% else %>
+                    <span class="m-text--danger">No</span>
+                  <% end %>
+                </td>
+                <td>
+                  <% if current_user.admin || current_user.id == @project.user.id %>
+                    <%= link_to 'Edit', url_for(action: 'edit', controller: 'videos', project_id: @project.id, id: video.id) %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if current_user.admin || current_user.id == @project.user.id %>
+                    <%= link_to 'Destroy', url_for(action: 'destroy', controller: 'videos', project_id: @project.id, id: video.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="m-def-list__info">
+        <%= link_to "See more / Manage Videos", url_for(action: 'index', controller: 'videos', project_id: @project.id) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-action-bar">
+    <div class="m-action-bar__item">
+      <%= link_to "Edit", edit_project_path(@project), class: "m-button" %>
+    </div>
+    <div class="m-action-bar__item">
+      <%= link_to "Back", projects_path, class: "m-button" %>
+    </div>
+  </div>
+</div>

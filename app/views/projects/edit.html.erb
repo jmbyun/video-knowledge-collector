@@ -1,6 +1,11 @@
-<h1>Editing Project</h1>
+<div class="m-container">
+  <div class="m-container__title">
+    <%= link_to "Projects", projects_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to @project.id_str, @project %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    Edit
+  </div>
 
-<%= render 'form', project: @project %>
-
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+  <%= render 'form', project: @project %>
+</div>

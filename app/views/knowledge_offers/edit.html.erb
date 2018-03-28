@@ -1,6 +1,15 @@
-<h1>Editing Knowledge Offer</h1>
+<div class="m-container">
+  <div class="m-container__title">
+    <%= link_to "Projects", projects_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to @project.id_str, @project %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to "Knowledge Offers", project_knowledge_offers_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to @knowledge_offer.id_str, url_for(action: 'show', controller: 'knowledge_offers', project_id: @project.id, id: @knowledge_offer.id) %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    Edit
+  </div>
 
-<%= render 'form', knowledge_offer: @knowledge_offer, url: url_for(action: 'edit', controller: 'knowledge_offers', project_id: @project.id, id: @knowledge_offer.id) %>
-
-<%= link_to 'Show', url_for(action: 'show', controller: 'knowledge_offers', project_id: @project.id, id: @knowledge_offer.id) %> |
-<%= link_to 'Back', project_knowledge_offers_path %>
+  <%= render 'form', knowledge_offer: @knowledge_offer, url: url_for(action: 'update', controller: 'knowledge_offers', project_id: @project.id, id: @knowledge_offer.id) %>
+</div>

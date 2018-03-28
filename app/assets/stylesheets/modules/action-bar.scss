@@ -1,0 +1,15 @@
+.m-action-bar {
+  position: relative;
+  padding: rem(20px) 0;
+  overflow: hidden;
+
+  &__item {
+    float: left;
+    padding: 0 rem(12px) 0 0;
+    
+    &--right {
+      float: right;
+      padding: 0 0 0 rem(12px);
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.m-pagination {
+  padding: rem(16px) 0;
+  text-align: center;
+
+  &__link {
+    display: inline-block;
+    padding: 0 rem(14px);
+    color: color('grey');
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+    
+    &--is-active {
+      text-decoration: underline;
+      color: color('link');
+    }
+  }
+}

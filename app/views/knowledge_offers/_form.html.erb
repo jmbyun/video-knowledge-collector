@@ -1,6 +1,6 @@
-<%= form_with(url: url, local: true) do |form| %>
+<%= form_with(model: knowledge_offer, url: url, local: true) do |form| %>
   <% if knowledge_offer.errors.any? %>
-    <div id="error_explanation">
+    <div class="m-form__errors">
       <h2><%= pluralize(knowledge_offer.errors.count, "error") %> prohibited this knowledge_offer from being saved:</h2>
 
       <ul>
@@ -12,21 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :id_str %>
-    <%= form.text_field :id_str, id: :knowledge_offer_id_str %>
+    <%= form.label :id_str, "ID", class: "m-form__label" %>
+    <%= form.text_field :id_str, id: :knowledge_offer_id_str, class: "m-form__input" %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :knowledge_offer_description %>
+    <%= form.label :description, "Description", class: "m-form__label" %>
+    <%= form.text_field :description, id: :knowledge_offer_description, class: "m-form__input" %>
   </div>
 
   <div class="field">
-    <%= form.label :callback_url %>
-    <%= form.text_field :callback_url, id: :knowledge_offer_callback_url %>
+    <%= form.label :callback_url, "Callback URL", class: "m-form__label" %>
+    <%= form.text_field :callback_url, id: :knowledge_offer_callback_url, class: "m-form__input" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="m-action-bar">
+    <div class="m-action-bar__item">
+      <%= form.submit "Submit", class: "m-button" %>
+    </div>
+    <div class="m-action-bar__item m-action-bar__item--right">
+      <%= link_to "Cancel", project_knowledge_offers_path, { class: "m-button" } %>
+    </div>
   </div>
 <% end %>

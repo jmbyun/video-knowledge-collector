@@ -1,6 +1,6 @@
-<%= form_with(url: url, local: true) do |form| %>
+<%= form_with(model: video, url: url, local: true) do |form| %>
   <% if video.errors.any? %>
-    <div id="error_explanation">
+    <div class="m-form__errors">
       <h2><%= pluralize(video.errors.count, "error") %> prohibited this video from being saved:</h2>
 
       <ul>
@@ -12,16 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :video_title %>
+    <%= form.label :title, "Title", class: "m-form__label" %>
+    <%= form.text_field :title, id: :video_title, class: "m-form__input" %>
   </div>
 
   <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url, id: :video_url %>
+    <%= form.label :url, "Download URL", class: "m-form__label" %>
+    <%= form.text_field :url, id: :video_url, class: "m-form__input" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="m-action-bar">
+    <div class="m-action-bar__item">
+      <%= form.submit "Submit", class: "m-button" %>
+    </div>
+    <div class="m-action-bar__item m-action-bar__item--right">
+      <%= link_to "Cancel", project_videos_path, { class: "m-button" } %>
+    </div>
   </div>
 <% end %>

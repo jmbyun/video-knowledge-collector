@@ -1,34 +1,62 @@
-<p id="notice"><%= notice %></p>
+<div class="m-container">
+  <div class="m-container__title">
+    <%= link_to "Projects", projects_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to @project.id_str, @project %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to "Knowledge Offers", project_knowledge_offers_path %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to @knowledge_offer.id_str, url_for(action: 'show', controller: 'knowledge_offers', project_id: @project.id, id: @knowledge_offer.id) %>
+  </div>
 
-<p>
-  <strong>Id str:</strong>
-  <%= @knowledge_offer.id_str %>
-</p>
+  <div class="m-def-list">
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        ID
+      </div>
+      <div class="m-def-list__info">
+        <%= @knowledge_offer.id_str %>
+      </div>
+    </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @knowledge_offer.description %>
-</p>
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        Description
+      </div>
+      <div class="m-def-list__info">
+        <%= @knowledge_offer.description %>
+      </div>
+    </div>
 
-<p>
-  <strong>Callback url:</strong>
-  <%= @knowledge_offer.callback_url %>
-</p>
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        Callback URL
+      </div>
+      <div class="m-def-list__info">
+        <%= @knowledge_offer.callback_url %>
+      </div>
+    </div>
 
-<p>
-  <strong>Approved:</strong>
-  <%= @knowledge_offer.approved %>
-</p>
+    <div class="m-def-list__item">
+      <div class="m-def-list__title">
+        Approved
+      </div>
+      <div class="m-def-list__info">
+        <% if @knowledge_offer.approved %>
+          <div class="m-text--success">Yes</div>
+        <% else %>
+          <div class="m-text--danger">No</div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Project:</strong>
-  <%= @knowledge_offer.project %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @knowledge_offer.user %>
-</p>
-
-<%= link_to 'Edit', url_for(action: 'edit', controller: 'knowledge_offers', project_id: @project.id, id: @knowledge_offer.id) %> |
-<%= link_to 'Back', project_knowledge_offers_path %>
+  <div class="m-action-bar">
+    <div class="m-action-bar__item">
+      <%= link_to 'Edit', url_for(action: 'edit', controller: 'knowledge_offers', project_id: @project.id, id: @knowledge_offer.id), class: "m-button" %>
+    </div>
+    <div class="m-action-bar__item">
+      <%= link_to 'Back', project_knowledge_offers_path, class: "m-button" %>
+    </div>
+  </div>
+</div>

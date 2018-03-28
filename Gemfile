@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 # Use devise to manage and authenticate users
 gem 'devise'
 
+gem 'font-awesome-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
