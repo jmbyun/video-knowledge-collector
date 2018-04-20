@@ -10,6 +10,26 @@
   color: color('white');
   cursor: pointer;
 
+  &--default {
+    background-color: color('default');
+  }
+
+  &--success {
+    background-color: color('success');
+  }
+
+  &--info {
+    background-color: color('info');
+  }
+
+  &--warning {
+    background-color: color('warning');
+  }
+
+  &--danger {
+    background-color: color('danger');
+  }
+
   &:hover {
     opacity: 0.7;
   }
