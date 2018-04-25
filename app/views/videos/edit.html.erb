@@ -6,6 +6,8 @@
     <i class="m-container__title-arrow fa fa-chevron-right"></i>
     <%= link_to "Videos", project_videos_path %>
     <i class="m-container__title-arrow fa fa-chevron-right"></i>
+    <%= link_to @video.title, url_for(action: 'show', controller: 'videos', project_id: @project.id, id: @video.id) %>
+    <i class="m-container__title-arrow fa fa-chevron-right"></i>
     Edit
   </div>
   <%= render 'form', video: @video, url: url_for(action: 'update', controller: 'videos', project_id: @project.id, id: @video.id) %>
