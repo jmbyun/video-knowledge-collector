@@ -16,10 +16,10 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)<, class: "m-form__label"/i>
+      <%= f.label :password, class: "m-form__label" %>
+      <i class="m-form__label">(leave blank if you don't want to change it)</i>
       <%= f.password_field :password, autocomplete: "off", class: "m-form__input" %>
       <% if @minimum_password_length %>
-        <br />
         <em><%= @minimum_password_length %> characters minimum</em>
       <% end %>
     </div>
@@ -30,7 +30,8 @@
     </div>
 
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)<, class: "m-form__label"/i>
+      <%= f.label :current_password, class: "m-form__label" %>
+      <i class="m-form__label">(we need your current password to confirm your changes)</i>
       <%= f.password_field :current_password, autocomplete: "off", class: "m-form__input" %>
     </div>
 

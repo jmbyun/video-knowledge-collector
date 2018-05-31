@@ -40,7 +40,7 @@
     display: block;
     padding: rem(4px) 0;
     color: color('dark-grey');
-    font-size: 12px;
+    font-size: rem(12px);
   }
 
   &__input {
@@ -64,5 +64,12 @@
     &:focus {
       border: 1px solid color('link');
     }
+  }
+
+  em {
+    display: block;
+    padding: rem(4px) 0;
+    color: color('grey');
+    font-size: rem(12px);
   }
 }
