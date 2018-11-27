@@ -94,3 +94,8 @@ There are many options for deploying the Rails 5 app on the server.
 
 Our recommended option is to use [Puma](http://puma.io/) and [Nginx](https://www.nginx.com/).
 Refer to this instruction by Digital Ocean for further information: [How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04).
+
+# Acknowledgements
+
+This work was supported by Institute for Information & communications Technology Promotion(IITP) grant funded by the Korea government(MSIT) (2017-0-01780, The technology development for event recognition/relational reasoning and learning knowledge based system for video understanding)
+ 
